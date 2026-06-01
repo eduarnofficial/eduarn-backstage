@@ -1,0 +1,20 @@
+docker build -t backstage-node22 .
+
+#Use this while running locally
+docker run -it -p 3000:3000 -p 7007:7007 backstage-node22
+
+docker run -it \
+  --name backstage \
+  -p 3000:3000 \
+  -p 7007:7007 \
+  -e HOST=0.0.0.0 \
+  -v $(pwd)/app-config.yaml:/app/app-config.yaml \
+  -v $(pwd)/packages:/app/packages \
+  -v $(pwd)/plugins:/app/plugins \
+  -v $(pwd)/examples:/app/examples \
+  -v $(pwd)/catalog-info.yaml:/app/catalog-info.yaml \
+  -v $(pwd)/backstage.json:/app/backstage.json \
+  backstage-node22:latest
+
+#All in compose file
+docker compose up

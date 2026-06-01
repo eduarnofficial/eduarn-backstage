@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  backstage:
+    image: backstage-node22:latest
+    container_name: backstage
+    ports:
+      - "3000:3000"
+      - "7007:7007"
+    environment:
+      - HOST=0.0.0.0
+    volumes:
+      - ./app-config.yaml:/app/app-config.yaml
+      - ./packages:/app/packages
+      - ./plugins:/app/plugins
+      - ./examples:/app/examples
+      - ./catalog-info.yaml:/app/catalog-info.yaml
+      - ./backstage.json:/app/backstage.json
